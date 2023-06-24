@@ -9,17 +9,19 @@ const pollingUpdateNewses = async () => {
         var newses = await newsService.getNewsesFromUrl(resource.url);
         resource.topics.map(async (topicId) => {
             var topic = await topicsService.getById(topicId);
-            newses = await newsService.setRankingNewses(newses, topic);
-            await Promise.all(newses.map(async (news) => {
-                if (news.resource != resource.id) {
-                    news.resource = resource.id;
-                    var newsUpserted = await newsService.upsert(news);
-                    if (!resource.newses.includes(newsUpserted.id)) {
-                        resource.newses.push(newsUpserted.id);
+            if (topic.active == true) {
+                newses = await newsService.setRankingNewses(newses, topic);
+                await Promise.all(newses.map(async (news) => {
+                    if (news.resource != resource.id) {
+                        news.resource = resource.id;
+                        var newsUpserted = await newsService.upsert(news);
+                        if (!resource.newses.includes(newsUpserted.id)) {
+                            resource.newses.push(newsUpserted.id);
+                        }
                     }
-                }
-            }));
-            await resourceService.update(resource);
+                }));
+                await resourceService.update(resource);
+            }
         });
     });
 }
