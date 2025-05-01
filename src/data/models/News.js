@@ -41,6 +41,6 @@ const newsSchema = new Schema({
     versionKey: false 
 });
 
-const News = mongoose.model('News', newsSchema, 'newses');
+const News = mongoose.model('News', newsSchema, 'news');
 
 module.exports = News;

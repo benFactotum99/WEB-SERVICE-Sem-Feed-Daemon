@@ -10,7 +10,7 @@ const mongoDB = process.env.CNN;
 //Polling Daemon
 const resourceController = require("./src/presentation/controllers/ResourceController");
 async function daemonFunc() {
-  await resourceController.pollingUpdateNewses();
+  await resourceController.pollingUpdateNews();
   console.log('Process daemon done!');
 }
 setInterval(daemonFunc, 432000);

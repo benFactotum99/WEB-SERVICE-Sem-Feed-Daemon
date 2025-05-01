@@ -6,7 +6,7 @@ const resourceSchema = new Schema({
         type: String,
         unique: true
     },
-    newses: [{
+    news: [{
         type: Schema.Types.ObjectId, 
         ref: 'News'
     }],
