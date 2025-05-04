@@ -13,7 +13,7 @@ async function daemonFunc() {
   await resourceController.pollingUpdateNews();
   console.log('Process daemon done!');
 }
-setInterval(daemonFunc, 432000);
+setInterval(daemonFunc, 1000 * 60 * 60); // every hour
 
 app.listen(port, async () => {
     await mongoose.connect(mongoDB)

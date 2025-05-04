@@ -1,6 +1,6 @@
-const resourceService = require("../../domain/services/ResourceService");
-const newsService = require("../../domain/services/NewsService");
-const topicsService = require("../../domain/services/TopicService");
+const resourceService = require("../../application/services/ResourceService");
+const newsService = require("../../application/services/NewsService");
+const topicsService = require("../../application/services/TopicService");
 
 const pollingUpdateNews = async () => {
 
